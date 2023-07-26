@@ -1,4 +1,37 @@
 /* Contact */
+.info-item {
+    padding: 30px;
+    height: 100%;
+}
+
+.info-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    line-height: 0;
+    color: #fff;
+    background: #dc3545;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.info-item h3 {
+    font-size: 20px;
+    color: #6c757d;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.info-item p {
+    padding: 0;
+    margin: 0;
+    line-height: 24px;
+    font-size: 14px;
+}
+
 section#contact {
     background-color: #212529;
     background-image: url("/assets/img/map-image.png");
