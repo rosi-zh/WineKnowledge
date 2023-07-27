@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthModule } from './auth/auth.module';
+import { WineModule } from './wine/wine.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthModule } from './auth/auth.module';
     NgbModule,
     CoreModule,
     AuthModule,
+    WineModule,
     AppRoutingModule,
   ],
   providers: [],
