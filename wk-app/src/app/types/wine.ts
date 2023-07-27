@@ -5,6 +5,7 @@ enum wineCategory {
 }
 export interface Wine {
     title: string;
+    image: string;
     category: wineCategory;
     text: string;
 }

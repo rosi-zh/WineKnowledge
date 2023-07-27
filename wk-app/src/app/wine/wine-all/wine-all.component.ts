@@ -15,9 +15,10 @@ export class WineAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.wineService.getAllWines().subscribe({
-      next: (winesList) => {
+      next: (winesObj) => {
+        const winesList = Object.entries(winesObj).map(e => Object.assign({_id: e[0]}, e[1]));
+        this.wines = winesList;
         this.isLoading = false;
-        console.log(winesList);
       },
       error: (err) => {
         this.isLoading = false;

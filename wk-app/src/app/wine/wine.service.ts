@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WineService {
-  private firebURL = 'https://wine-knowledge-default-rtdb.europe-west1.firebasedatabase.app/books.json';
+  private firebURL = 'https://wine-knowledge-default-rtdb.europe-west1.firebasedatabase.app/wines.json';
 
   constructor(private http: HttpClient) { }
 
