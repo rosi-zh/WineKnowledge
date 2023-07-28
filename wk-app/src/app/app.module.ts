@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthModule } from './auth/auth.module';
 import { WineModule } from './wine/wine.module';
+import { ArticleModule } from './article/article.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WineModule } from './wine/wine.module';
     CoreModule,
     AuthModule,
     WineModule,
+    ArticleModule,
     AppRoutingModule,
   ],
   providers: [],
