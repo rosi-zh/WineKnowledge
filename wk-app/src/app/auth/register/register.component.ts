@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,14 +11,19 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent {
   @ViewChild('registerForm') form!: NgForm;  
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
-    let { email, password } = this.form.value;
+    let { firstName, lastName, email, password } = this.form.value;
+    firstName = firstName.trim();
+    lastName = lastName.trim();
     email = email.trim();
+
     
-    this.authService.register(email, password).subscribe((d) => {
+    this.authService.register(firstName, lastName, email, password)
+      .subscribe((d) => {
       console.log(d);
+      this.router.navigate(['/']);
     });
     
   }

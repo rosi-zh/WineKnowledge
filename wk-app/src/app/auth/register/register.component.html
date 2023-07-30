@@ -11,6 +11,24 @@
                                 <h3 class="section-subheading text-muted">to WineKnowledge</h3>
                             </div>
                             <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+                                <!-- First name input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="firstName">First name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" ngModel #firstNameInput="ngModel" required />
+                                </div>
+                                <ng-container *ngIf="firstNameInput.touched">
+                                    <div class="invalid-feedback" *ngIf="firstNameInput.errors?.['required']">*First name is required.</div>
+                                </ng-container>
+
+                                <!-- First name input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastNameInput="ngModel" required />
+                                </div>
+                                <ng-container *ngIf="lastNameInput.touched">
+                                    <div class="invalid-feedback" *ngIf="lastNameInput.errors?.['required']">*Last name is required.</div>
+                                </ng-container>
+
                                 <!-- Email input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="email">Email address</label>

@@ -5,19 +5,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WineService {
-  private firebURL = 'https://wine-knowledge-default-rtdb.europe-west1.firebasedatabase.app/wines.json';
-
   constructor(private http: HttpClient) { }
 
   getAllWines() {
-    return this.http.get(this.firebURL);
+    return this.http.get('/api/wines.json');
   }
 
   getWine() {
-    return this.http.get(this.firebURL);
+    return this.http.get('/api/wines.json');
   }
 
   addWine(title: string, category: string, text: string) {
-    return this.http.post(this.firebURL, { title, category, text });
+    return this.http.post('/api/wines.json', { title, category, text });
   }
 }

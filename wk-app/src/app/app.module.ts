@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AuthModule } from './auth/auth.module';
 import { WineModule } from './wine/wine.module';
 import { ArticleModule } from './article/article.module';
+import { appInterceptorProvider } from './app.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { ArticleModule } from './article/article.module';
     ArticleModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    appInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
