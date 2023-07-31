@@ -14,19 +14,21 @@
                                 <!-- First name input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="firstName">First name</label>
-                                    <input type="text" id="firstName" name="firstName" class="form-control" ngModel #firstNameInput="ngModel" required />
+                                    <input type="text" id="firstName" name="firstName" class="form-control" ngModel #firstNameInput="ngModel" required minlength="2"/>
                                 </div>
                                 <ng-container *ngIf="firstNameInput.touched">
                                     <div class="invalid-feedback" *ngIf="firstNameInput.errors?.['required']">*First name is required.</div>
+                                    <div class="invalid-feedback" *ngIf="firstNameInput.errors?.['minlength']">*First name must be at least {{firstNameInput.errors?.['minlength']['requiredLength']}} characters long.</div>
                                 </ng-container>
 
                                 <!-- First name input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="lastName">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastNameInput="ngModel" required />
+                                    <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastNameInput="ngModel" required  minlength="2"/>
                                 </div>
                                 <ng-container *ngIf="lastNameInput.touched">
                                     <div class="invalid-feedback" *ngIf="lastNameInput.errors?.['required']">*Last name is required.</div>
+                                    <div class="invalid-feedback" *ngIf="lastNameInput.errors?.['minlength']">*Last name must be at least {{lastNameInput.errors?.['minlength']['requiredLength']}} characters long.</div>
                                 </ng-container>
 
                                 <!-- Email input -->
@@ -42,19 +44,21 @@
                                 <!-- Password input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control" ngModel #passwordInput="ngModel" required/>
+                                    <input type="password" id="password" name="password" class="form-control" ngModel #passwordInput="ngModel" required minlength="8" />
                                 </div>
                                 <ng-container *ngIf="passwordInput.touched">
                                     <div class="invalid-feedback" *ngIf="passwordInput.errors?.['required']">*Password is required.</div>
+                                    <div class="invalid-feedback" *ngIf="passwordInput.errors?.['minlength']">*Password must be at least {{passwordInput.errors?.['minlength']['requiredLength']}} characters long.</div>
                                 </ng-container>
 
                                 <!-- RePassword input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="rePassword">Repeat Password</label>
-                                    <input type="password" id="rePassword" name="rePassword" class="form-control" ngModel #rePasswordInput="ngModel" required/>
+                                    <input type="password" id="rePassword" name="rePassword" class="form-control" ngModel #rePasswordInput="ngModel" required appMatchPasswords="{{passwordInput.value}}" />
                                 </div>
                                 <ng-container *ngIf="rePasswordInput.touched">
                                     <div class="invalid-feedback" *ngIf="rePasswordInput.errors?.['required']">*Repeat Password is required.</div>
+                                    <div class="invalid-feedback" *ngIf="rePasswordInput.errors?.['matchPasswords']">*Passwords don't match.</div>
                                 </ng-container>
                                 <!-- Checkbox -->
                                 <div class="form-check d-flex justify-content-center my-4">
