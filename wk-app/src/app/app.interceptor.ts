@@ -22,7 +22,7 @@ export class AppInterceptor implements HttpInterceptor {
 
         return next.handle(req).pipe(
             catchError((error) => {
-                console.log(error);
+                console.log(error.error.error.message);
 
                 return [error];
             })

@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { User } from '../types/user';
+import { UserResponse } from '../types/userResponse';
+import { environment } from 'src/environments/environment';
+
+const { endpoints } = environment;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
-  private user$$ = new BehaviorSubject<User | undefined>(undefined);
+  private user$$ = new BehaviorSubject<UserResponse | undefined>(undefined);
   user$ = this.user$$.asObservable();
 
-  user: User | undefined;
+  user: UserResponse | undefined;
 
   subscription: Subscription;
 
@@ -36,16 +39,16 @@ export class AuthService implements OnDestroy {
 
   login(email: string, password: string) {
     return this.http
-      .post<User>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do', { email, password })
+      .post<UserResponse>(`/auth/${endpoints.login}`, { email, password })
       .pipe(tap((user) => {
         this.user$$.next(user);
         localStorage.setItem('userData', JSON.stringify(user));
       }));
   }
 
-  register(firstName: string, lastName: string, email: string, password: string) {
+  register(email: string, password: string, displayName: string) {
     return this.http
-      .post<User>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do', { firstName, lastName, email, password })
+      .post<UserResponse>(`/auth/${endpoints.register}`, { email, password, displayName })
       .pipe(tap((user) => {
         this.user$$.next(user);
         localStorage.setItem('userData', JSON.stringify(user));

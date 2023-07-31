@@ -15,12 +15,11 @@ export class RegisterComponent {
 
   onRegister() {
     let { firstName, lastName, email, password } = this.form.value;
-    firstName = firstName.trim();
-    lastName = lastName.trim();
+    const displayName = `${firstName.trim()} ${lastName.trim()}`;
     email = email.trim();
 
     
-    this.authService.register(firstName, lastName, email, password)
+    this.authService.register(email, password, displayName)
       .subscribe((d) => {
       console.log(d);
       this.router.navigate(['/']);
