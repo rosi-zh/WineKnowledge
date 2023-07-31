@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmailDirective } from './email.directive';
+import { EmailDirective } from './validators/email.directive';
 
 
 
