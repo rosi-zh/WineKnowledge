@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { WineAllComponent } from './wine-all/wine-all.component';
 import { WineRoutingModule } from './wine-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -10,7 +12,8 @@ import { WineRoutingModule } from './wine-routing.module';
   ],
   imports: [
     CommonModule,
-    WineRoutingModule
+    WineRoutingModule,
+    SharedModule
   ],
   exports: [
     WineAllComponent
