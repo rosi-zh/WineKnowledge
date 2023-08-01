@@ -1,0 +1,96 @@
+<main id="main">
+    <section class="page-section text-center">
+        <div class="container">
+            <div class="card mx-4 mx-md-5 form-box">
+                <div class="card-body py-5 px-md-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4">
+
+                            <div class="text-center mb-4">
+                                <h2 class="section-heading text-uppercase">Add Wine</h2>
+                                <h3 class="section-subheading text-muted">to WineKnowledge</h3>
+                            </div>
+
+                            <form #addWineForm="ngForm" (ngSubmit)="onAdd()">
+                                <!-- Title input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input type="text" id="title" name="title" class="form-control" ngModel
+                                        #titleInput="ngModel" required minlength="2" />
+                                </div>
+                                <ng-container *ngIf="titleInput.touched">
+                                    <div class="invalid-feedback" *ngIf="titleInput.errors?.['required']">*Title is
+                                        required.</div>
+                                    <div class="invalid-feedback" *ngIf="titleInput.errors?.['minlength']">*Title must
+                                        be at least {{titleInput.errors?.['minlength']['requiredLength']}} characters
+                                        long.</div>
+                                </ng-container>
+
+                                <!-- Category -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="category">Image</label>
+                                    <select class="form-select" id="category" name="category" aria-label="" ngModel #category="ngModel" required>
+                                        
+                                        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                                        <!-- <option selected>---Choose category---</option>
+                                        <option value="red">Red Wine</option>
+                                        <option value="white">White Wine</option>
+                                        <option value="rose">Rose</option> -->
+                                      </select>
+                                </div>
+                                <ng-container *ngIf="imageInput.touched">
+                                    <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
+                                        required.</div>
+                                </ng-container>
+
+                                <!-- Image input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="image">Image</label>
+                                    <input type="text" id="image" name="image" class="form-control" ngModel
+                                        #imageInput="ngModel" required />
+                                </div>
+                                <ng-container *ngIf="imageInput.touched">
+                                    <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
+                                        required.</div>
+                                </ng-container>
+
+                                <!-- Taste summary input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="taste">Taste Summary</label>
+                                    <input type="text" id="taste" name="taste" class="form-control" ngModel
+                                        #tasteInput="ngModel" required minlength="5" />
+                                </div>
+                                <ng-container *ngIf="tasteInput.touched">
+                                    <div class="invalid-feedback" *ngIf="tasteInput.errors?.['required']">*Taste summary
+                                        is required.</div>
+                                    <div class="invalid-feedback" *ngIf="tasteInput.errors?.['minlength']">*Taste
+                                        summary must be at least {{tasteInput.errors?.['minlength']['requiredLength']}}
+                                        characters long.</div>
+                                </ng-container>
+
+                                <!-- Wine Details input -->
+                                <div class="form-group mt-4">
+                                    <label class="form-label" for="wineDetails">Details</label>
+                                    <textarea class="form-control" id="wineDetails" name="wineDetails" rows="5" ngModel
+                                        #wineDetailsInput="ngModel" required minlength="10"></textarea>
+                                </div>
+                                <ng-container *ngIf="wineDetailsInput.touched">
+                                    <div class="invalid-feedback" *ngIf="wineDetailsInput.errors?.['required']">*Wine
+                                        details text is required.</div>
+                                    <div class="invalid-feedback" *ngIf="wineDetailsInput.errors?.['minlength']">*Wine
+                                        details text must be at least
+                                        {{wineDetailsInput.errors?.['minlength']['requiredLength']}} characters long.
+                                    </div>
+                                </ng-container>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-danger text-uppercase my-4 px-4"
+                                    [disabled]="addWineForm.invalid">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

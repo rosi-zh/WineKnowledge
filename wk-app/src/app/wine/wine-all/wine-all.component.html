@@ -5,6 +5,9 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Wines</h2>
                 <h3 class="section-subheading text-muted">Start with learning the basics.</h3>
+                <ng-container *ngIf="isLoggedIn">
+                    <a class="btn btn-danger btn-lg mb-3" routerLink="/wines/add">Add Wine</a>
+                </ng-container>
             </div>
             <div class="row">
                 <div class="col-12 text-center" *ngIf="isLoading">

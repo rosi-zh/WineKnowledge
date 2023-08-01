@@ -21,7 +21,7 @@
                                     <div class="invalid-feedback" *ngIf="firstNameInput.errors?.['minlength']">*First name must be at least {{firstNameInput.errors?.['minlength']['requiredLength']}} characters long.</div>
                                 </ng-container>
 
-                                <!-- First name input -->
+                                <!-- Last name input -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="lastName">Last Name</label>
                                     <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastNameInput="ngModel" required  minlength="2"/>

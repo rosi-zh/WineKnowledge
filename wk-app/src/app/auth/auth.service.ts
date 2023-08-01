@@ -15,7 +15,7 @@ export class AuthService implements OnDestroy {
 
   user: UserResponse | undefined;
 
-  subscription: Subscription;
+  private subscription: Subscription;
 
   get isLoggedIn(): boolean {
     return !!this.user;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Wine } from 'src/app/types/wine';
 import { WineService } from '../wine.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-wine-all',
@@ -11,7 +12,11 @@ export class WineAllComponent implements OnInit {
   wines: Wine[] = [];
   isLoading: boolean = true;
 
-  constructor(private wineService: WineService) {}
+  constructor(private wineService: WineService, private authService: AuthService) {}
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
 
   ngOnInit(): void {
     this.wineService.getAllWines().subscribe({

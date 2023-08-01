@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthModule } from './auth/auth.module';
@@ -25,6 +26,7 @@ import { appInterceptorProvider } from './app.interceptor';
     HttpClientModule,
     NgbModule,
     CoreModule,
+    SharedModule,
     AuthModule,
     WineModule,
     ArticleModule,
