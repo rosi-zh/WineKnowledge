@@ -29,14 +29,16 @@
                                 <!-- Category -->
                                 <div class="form-group mt-4">
                                     <label class="form-label" for="category">Image</label>
-                                    <select class="form-select" id="category" name="category" aria-label="" ngModel #category="ngModel" required>
-                                        
-                                        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                                    <select class="form-select" id="category" name="category" aria-label="" ngModel
+                                        #category="ngModel" required>
+
+                                        <option *ngFor="let category of categories" [value]="category">{{category}}
+                                        </option>
                                         <!-- <option selected>---Choose category---</option>
                                         <option value="red">Red Wine</option>
                                         <option value="white">White Wine</option>
                                         <option value="rose">Rose</option> -->
-                                      </select>
+                                    </select>
                                 </div>
                                 <ng-container *ngIf="imageInput.touched">
                                     <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
