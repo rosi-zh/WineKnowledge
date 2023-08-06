@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
-import { UserResponse } from '../types/userResponse';
+import { IUserResponse } from '../types/userResponse';
 import { environment } from 'src/environments/environment';
 
 const { endpoints } = environment;
@@ -10,10 +10,10 @@ const { endpoints } = environment;
   providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
-  private user$$ = new BehaviorSubject<UserResponse | undefined>(undefined);
+  private user$$ = new BehaviorSubject<IUserResponse | undefined>(undefined);
   user$ = this.user$$.asObservable();
 
-  user: UserResponse | undefined;
+  user: IUserResponse | undefined;
 
   private subscription: Subscription;
 
@@ -39,7 +39,7 @@ export class AuthService implements OnDestroy {
 
   login(email: string, password: string) {
     return this.http
-      .post<UserResponse>(`/auth/${endpoints.login}`, { email, password })
+      .post<IUserResponse>(`/auth/${endpoints.login}`, { email, password })
       .pipe(tap((user) => {
         this.user$$.next(user);
         localStorage.setItem('userData', JSON.stringify(user));
@@ -48,7 +48,7 @@ export class AuthService implements OnDestroy {
 
   register(email: string, password: string, displayName: string) {
     return this.http
-      .post<UserResponse>(`/auth/${endpoints.register}`, { email, password, displayName })
+      .post<IUserResponse>(`/auth/${endpoints.register}`, { email, password, displayName })
       .pipe(tap((user) => {
         this.user$$.next(user);
         localStorage.setItem('userData', JSON.stringify(user));

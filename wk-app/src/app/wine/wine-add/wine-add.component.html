@@ -14,39 +14,37 @@
                             <form #addWineForm="ngForm" (ngSubmit)="onAdd()">
                                 <!-- Title input -->
                                 <div class="form-group mt-4">
-                                    <label class="form-label" for="title">Title</label>
-                                    <input type="text" id="title" name="title" class="form-control" ngModel
-                                        #titleInput="ngModel" required minlength="2" />
+                                    <label class="form-label" for="wineName">Wine name</label>
+                                    <input type="text" id="wineName" name="wineName" class="form-control" ngModel
+                                        #wineNameInput="ngModel" required minlength="2" />
                                 </div>
-                                <ng-container *ngIf="titleInput.touched">
-                                    <div class="invalid-feedback" *ngIf="titleInput.errors?.['required']">*Title is
+                                <ng-container *ngIf="wineNameInput.touched">
+                                    <div class="invalid-feedback" *ngIf="wineNameInput.errors?.['required']">*Wine name
+                                        is
                                         required.</div>
-                                    <div class="invalid-feedback" *ngIf="titleInput.errors?.['minlength']">*Title must
-                                        be at least {{titleInput.errors?.['minlength']['requiredLength']}} characters
+                                    <div class="invalid-feedback" *ngIf="wineNameInput.errors?.['minlength']">*Wine name
+                                        must
+                                        be at least {{wineNameInput.errors?.['minlength']['requiredLength']}} characters
                                         long.</div>
                                 </ng-container>
 
                                 <!-- Category -->
                                 <div class="form-group mt-4">
-                                    <label class="form-label" for="category">Image</label>
+                                    <label class="form-label" for="category">Category</label>
                                     <select class="form-select" id="category" name="category" aria-label="" ngModel
                                         #category="ngModel" required>
 
                                         <option *ngFor="let category of categories" [value]="category">{{category}}
                                         </option>
-                                        <!-- <option selected>---Choose category---</option>
-                                        <option value="red">Red Wine</option>
-                                        <option value="white">White Wine</option>
-                                        <option value="rose">Rose</option> -->
                                     </select>
                                 </div>
-                                <ng-container *ngIf="imageInput.touched">
-                                    <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
+                                <ng-container *ngIf="category.touched">
+                                    <div class="invalid-feedback" *ngIf="category.errors?.['required']">*Category is
                                         required.</div>
                                 </ng-container>
 
                                 <!-- Image input -->
-                                <div class="form-group mt-4">
+                                <!-- <div class="form-group mt-4">
                                     <label class="form-label" for="image">Image</label>
                                     <input type="text" id="image" name="image" class="form-control" ngModel
                                         #imageInput="ngModel" required />
@@ -54,7 +52,17 @@
                                 <ng-container *ngIf="imageInput.touched">
                                     <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
                                         required.</div>
-                                </ng-container>
+                                </ng-container> -->
+                                <div class="form-group mt-4">
+                                    <input type="file" id="image" class="form-control file-input" #imageInput
+                                        (change)="onImageSelect($event)" [accept]="requiredFileType" />
+                                    <div class="file-upload">
+                                        <button class="btn btn-danger" (click)="imageInput.click()"><i
+                                                class="bi bi-upload"></i> Upload Image</button>
+                                        <div>{{fileName || "No file uploaded yet."}}</div>
+                                    </div>
+
+                                </div>
 
                                 <!-- Taste summary input -->
                                 <div class="form-group mt-4">
@@ -68,6 +76,7 @@
                                     <div class="invalid-feedback" *ngIf="tasteInput.errors?.['minlength']">*Taste
                                         summary must be at least {{tasteInput.errors?.['minlength']['requiredLength']}}
                                         characters long.</div>
+                                    <i class="bi bi-x-square" (click)="cancelUpload()" *ngIf="uploadProgress"></i>
                                 </ng-container>
 
                                 <!-- Wine Details input -->
