@@ -20,13 +20,15 @@ export class AppInterceptor implements HttpInterceptor {
             });
         }
 
-        return next.handle(req).pipe(
-            catchError((error) => {
-                console.log(error.error.error.message);
+        // return next.handle(req).pipe(
+        //     catchError((error) => {
+        //         console.log(error.error.error.message);
 
-                return [error];
-            })
-        );
+        //         return [error];
+        //     })
+        // );
+
+        return next.handle(req);
     }
 }
 

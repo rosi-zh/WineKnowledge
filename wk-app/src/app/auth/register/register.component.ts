@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   @ViewChild('registerForm') form!: NgForm;  
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -19,10 +20,21 @@ export class RegisterComponent {
     email = email.trim();
 
     
-    this.authService.register(email, password, displayName)
-      .subscribe((d) => {
-      this.router.navigate(['/']);
-    });
+    this.authService.register(email, password, displayName).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        }, 
+        error: (err) => {
+          const message = err.error.error.message;
+
+          if (message == 'EMAIL_EXISTS') {
+            this.errorMessage = 'Email already exists'
+          } else {
+            this.errorMessage = message;
+          }
+
+        }
+      });
     
   }
 }
