@@ -21,7 +21,6 @@ export class RegisterComponent {
     
     this.authService.register(email, password, displayName)
       .subscribe((d) => {
-      console.log(d);
       this.router.navigate(['/']);
     });
     

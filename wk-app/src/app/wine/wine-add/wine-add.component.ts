@@ -31,6 +31,7 @@ export class WineAddComponent {
 
   onImageSelect(event: any) {
     const file: File = event.target.files[0];
+    console.log(event.target);
 
     if (file) {
       this.fileName = file.name;
@@ -38,10 +39,8 @@ export class WineAddComponent {
       formData.append("image", file);
 
       const upload$ = this.http
-        .post("", formData, {
-          reportProgress: true,
-          observe: 'events'
-        }).pipe(
+        .post("", formData)
+        .pipe(
           finalize(() => this.reset())
         );
 
