@@ -60,6 +60,10 @@ export class AuthService implements OnDestroy {
     this.user$$.next(undefined);
   }
 
+  profile(token: string) {
+    return;
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
