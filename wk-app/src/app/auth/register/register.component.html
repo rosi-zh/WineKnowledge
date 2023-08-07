@@ -14,7 +14,7 @@
                             <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
                                 {{errorMessage}}
                             </div>
-                            
+
                             <form #registerForm="ngForm" (ngSubmit)="onRegister()">
                                 <!-- First name input -->
                                 <div class="form-group mt-4">
@@ -75,7 +75,7 @@
                                 <button type="submit" class="btn btn-danger text-uppercase mb-4 px-4" [disabled]="registerForm.invalid">Register</button>
 
                                 <div>
-                                    <h6>Already have an account? <a routerLink="/login">Login</a></h6>
+                                    <h6>Already have an account? <a routerLink="/auth/login">Login</a></h6>
                                 </div>
                             </form>
                         </div>

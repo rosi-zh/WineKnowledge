@@ -24,6 +24,10 @@ const routes: Routes = [
     component: NotFoundComponent
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: '**',
     redirectTo: '404'
   }
