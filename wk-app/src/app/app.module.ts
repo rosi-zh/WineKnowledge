@@ -11,7 +11,6 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { WineModule } from './wine/wine.module';
-import { ArticleModule } from './article/article.module';
 import { appInterceptorProvider } from './app.interceptor';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { appInterceptorProvider } from './app.interceptor';
     CoreModule,
     SharedModule,
     WineModule,
-    ArticleModule,
     AppRoutingModule,
   ],
   providers: [
