@@ -39,7 +39,7 @@ export class WineAddComponent {
       formData.append("image", file);
 
       const upload$ = this.http
-        .post("", formData)
+        .post("gs://wine-knowledge.appspot.com", formData)
         .pipe(
           finalize(() => this.reset())
         );
