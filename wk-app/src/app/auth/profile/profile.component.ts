@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { IProfile } from 'src/app/types/profile';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,12 +15,18 @@ export class ProfileComponent implements OnInit {
     displayName: '',
     lastLoginAt: ''
   };
-  constructor(private authService: AuthService) {}
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe((profileData) => {
-      console.log(Date());
-      this.profileDetails = profileData;
-    });
+    this.authService.getProfile().subscribe(
+      {
+        next: (profileData) =>  {this.profileDetails = profileData},
+        error: () => {
+          localStorage.removeItem('userData');
+          this.router.navigate(['/auth/login']);
+        }
+      }  
+    );
   }
 }
