@@ -21,7 +21,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getProfile().subscribe(
       {
-        next: (profileData) =>  {this.profileDetails = profileData},
+        next: (profileData) =>  {
+          this.profileDetails = profileData
+        },
         error: () => {
           localStorage.removeItem('userData');
           this.router.navigate(['/auth/login']);
