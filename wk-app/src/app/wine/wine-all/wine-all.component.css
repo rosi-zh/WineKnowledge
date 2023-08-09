@@ -68,6 +68,7 @@
     margin-bottom: 2rem;
   }
   .portfolio-modal .modal-content img {
+    object-fit: cover;
     margin-bottom: 2rem;
   }
   .portfolio-modal .close-modal {
