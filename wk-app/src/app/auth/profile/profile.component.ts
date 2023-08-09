@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { IProfile } from 'src/app/types/profile';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditNameComponent } from '../edit-name/edit-name.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +18,7 @@ export class ProfileComponent implements OnInit {
     lastLoginAt: ''
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private modelService: NgbModal) {}
 
   ngOnInit(): void {
     this.authService.getProfile().subscribe(
@@ -30,5 +32,9 @@ export class ProfileComponent implements OnInit {
         }
       }  
     );
+  }
+
+  openModal(): void {
+    const modalRef = this.modelService.open(EditNameComponent);
   }
 }

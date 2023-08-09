@@ -7,5 +7,6 @@ export const environment = {
         login: 'accounts:signInWithPassword?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do',
         register: 'accounts:signUp?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do',
         profile: 'accounts:lookup?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do',
+        update: 'accounts:update?key=AIzaSyBY1iBKGiii6U-HtI909OzmGZwQ7mR37Do'
     },
 };

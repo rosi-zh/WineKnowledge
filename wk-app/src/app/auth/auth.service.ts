@@ -4,6 +4,7 @@ import { BehaviorSubject, Subscription, map, tap } from 'rxjs';
 import { IUserResponse } from '../types/userResponse';
 import { environment } from 'src/environments/environment';
 import { IProfile } from '../types/profile';
+import { IEditResponse } from '../types/editResponse';
 
 const { endpoints } = environment;
 
@@ -15,12 +16,15 @@ export class AuthService implements OnDestroy {
   user$ = this.user$$.asObservable();
 
   user: IUserResponse | undefined;
-  
 
   private subscription: Subscription;
 
   get isLoggedIn(): boolean {
     return !!this.user;
+  }
+
+  get idToken(): string | undefined {
+    return this.user?.idToken;
   }
 
   constructor(private http: HttpClient) {
@@ -63,14 +67,33 @@ export class AuthService implements OnDestroy {
   }
 
   getProfile() {
-    const idToken = this.user?.idToken;
+    const idToken = this.idToken;
 
     return this.http
-      .post<{kind: string, users: IProfile[]}>(`/auth/${endpoints.profile}`, { idToken })
+      .post<{ kind: string, users: IProfile[] }>(`/auth/${endpoints.profile}`, { idToken })
       .pipe(map((data) => {
         const profileData = data.users[0];
-        
+
         return profileData;
+      }));
+  }
+
+  editName(displayName: string) {
+    const idToken = this.idToken;
+
+    return this.http
+      .post<IEditResponse>(`/auth/${endpoints.update}`, { idToken, displayName })
+      .pipe(tap((user) => {
+        if (this.user$$){
+          this.user$$.value!.displayName = user.displayName;
+        }
+
+        let userData = localStorage.getItem('userData');
+        if (userData) {
+          const userDataObj = JSON.parse(userData);
+          userDataObj.displayName = user.displayName;
+          localStorage.setItem('userData', JSON.stringify(userDataObj));
+        }
       }));
   }
 

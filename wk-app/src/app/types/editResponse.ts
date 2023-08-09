@@ -1,4 +1,4 @@
-export interface IUserResponse {
+export interface IEditResponse {
     displayName: string;
     email: string;
     idToken: string;
