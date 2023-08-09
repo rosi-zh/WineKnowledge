@@ -55,11 +55,12 @@
                                 </ng-container> -->
                                 <div class="form-group mt-4">
                                     <input type="file" id="image" class="form-control file-input" #imageInput
-                                        (change)="onImageSelect($event)" [accept]="requiredFileType" />
+                                        (change)="onImageSelect($event)" accept=".png,.jpg" />
                                     <div class="file-upload">
                                         <button class="btn btn-danger" (click)="imageInput.click()"><i
                                                 class="bi bi-upload"></i> Upload Image</button>
                                         <div>{{fileName || "No file uploaded yet."}}</div>
+                                        <i class="bi bi-x-square" (click)="cancelUpload()" *ngIf="uploadProgress"></i>
                                     </div>
 
                                 </div>
@@ -76,7 +77,7 @@
                                     <div class="invalid-feedback" *ngIf="tasteInput.errors?.['minlength']">*Taste
                                         summary must be at least {{tasteInput.errors?.['minlength']['requiredLength']}}
                                         characters long.</div>
-                                    <i class="bi bi-x-square" (click)="cancelUpload()" *ngIf="uploadProgress"></i>
+                                    
                                 </ng-container>
 
                                 <!-- Wine Details input -->

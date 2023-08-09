@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { WineModule } from './wine/wine.module';
 import { appInterceptorProvider } from './app.interceptor';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,8 @@ import { appInterceptorProvider } from './app.interceptor';
     BrowserModule,
     HttpClientModule,
     NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     CoreModule,
     SharedModule,
     WineModule,

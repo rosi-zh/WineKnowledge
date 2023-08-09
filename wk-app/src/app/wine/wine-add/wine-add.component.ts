@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription, finalize } from 'rxjs';
+//import { AngularFireStorage } from '@angular/fire/compat/storage'
 
 @Component({
   selector: 'app-wine-add',
