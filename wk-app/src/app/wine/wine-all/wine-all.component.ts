@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Wine } from 'src/app/types/wine';
-import { WineService } from '../wine.service';
+import { ApiService } from '../api.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -12,14 +12,14 @@ export class WineAllComponent implements OnInit {
   wines: Wine[] = [];
   isLoading: boolean = true;
 
-  constructor(private wineService: WineService, private authService: AuthService) {}
+  constructor(private apiService: ApiService, private authService: AuthService) {}
 
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn;
   }
 
   ngOnInit(): void {
-    this.wineService.getAllWines().subscribe({
+    this.apiService.getAllWines().subscribe({
       next: (winesObj) => {
         const winesList = Object.entries(winesObj).map(e => Object.assign({_id: e[0]}, e[1]));
         this.wines = winesList;

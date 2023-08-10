@@ -11,6 +11,10 @@
                                 <h3 class="section-subheading text-muted">to WineKnowledge</h3>
                             </div>
 
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                                {{errorMessage}}
+                            </div>
+
                             <form #addWineForm="ngForm" (ngSubmit)="onAdd()">
                                 <!-- Title input -->
                                 <div class="form-group mt-4">
@@ -44,25 +48,23 @@
                                 </ng-container>
 
                                 <!-- Image input -->
-                                <!-- <div class="form-group mt-4">
-                                    <label class="form-label" for="image">Image</label>
-                                    <input type="text" id="image" name="image" class="form-control" ngModel
-                                        #imageInput="ngModel" required />
-                                </div>
-                                <ng-container *ngIf="imageInput.touched">
-                                    <div class="invalid-feedback" *ngIf="imageInput.errors?.['required']">*Image is
-                                        required.</div>
-                                </ng-container> -->
                                 <div class="form-group mt-4">
-                                    <input type="file" id="image" class="form-control file-input" #imageInput
-                                        (change)="onImageSelect($event)" accept=".png,.jpg" />
+                                    <label class="form-label" for="imageInput">Image</label>
+                                    <input type="file" id="imageInput" name="imageInput"
+                                        class="form-control file-input mb-3" ngModel #imageInput="ngModel"
+                                        (change)="onImageSelect($event)" accept=".png,.jpg" required />
                                     <div class="file-upload">
-                                        <button class="btn btn-danger" (click)="imageInput.click()"><i
-                                                class="bi bi-upload"></i> Upload Image</button>
-                                        <div>{{fileName || "No file uploaded yet."}}</div>
-                                        <i class="bi bi-x-square" (click)="cancelUpload()" *ngIf="uploadProgress"></i>
+                                        <button class="btn btn-danger" (click)="uploadImage($event)">
+                                            <i class="bi bi-upload"></i> Upload Image
+                                        </button>
+                                        <div>{{ uploadMessage }}</div>
                                     </div>
 
+                                    <ng-container *ngIf="imageInput.touched">
+                                        <div class="invalid-feedback"
+                                            *ngIf="imageInput.errors?.['required'] || !downloadUrl">*Image is
+                                            required. Please select image and click upload button.</div>
+                                    </ng-container>
                                 </div>
 
                                 <!-- Taste summary input -->
@@ -77,7 +79,7 @@
                                     <div class="invalid-feedback" *ngIf="tasteInput.errors?.['minlength']">*Taste
                                         summary must be at least {{tasteInput.errors?.['minlength']['requiredLength']}}
                                         characters long.</div>
-                                    
+
                                 </ng-container>
 
                                 <!-- Wine Details input -->
@@ -97,7 +99,7 @@
 
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-danger text-uppercase my-4 px-4"
-                                    [disabled]="addWineForm.invalid">Add</button>
+                                    [disabled]="addWineForm.invalid || !downloadUrl">Add</button>
                             </form>
                         </div>
                     </div>

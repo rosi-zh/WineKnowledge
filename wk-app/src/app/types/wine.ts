@@ -4,8 +4,11 @@ enum wineCategory {
     Rose = "Rose"
 }
 export interface Wine {
-    title: string;
-    image: string;
+    wineName: string;
     category: wineCategory;
-    text: string;
+    imageUrl: string;
+    taste: string;
+    wineDetails: string;
+    ownerId: string;
+    likes: string[];
 }
