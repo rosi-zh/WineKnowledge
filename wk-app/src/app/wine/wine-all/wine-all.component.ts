@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Wine } from 'src/app/types/wine';
+import { IWine } from 'src/app/types/wine';
 import { ApiService } from '../api.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./wine-all.component.css']
 })
 export class WineAllComponent implements OnInit {
-  wines: Wine[] = [];
+  wines: IWine[] = [];
   isLoading: boolean = true;
 
   constructor(private apiService: ApiService, private authService: AuthService) {}
@@ -20,9 +20,8 @@ export class WineAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getAllWines().subscribe({
-      next: (winesObj) => {
-        const winesList = Object.entries(winesObj).map(e => Object.assign({_id: e[0]}, e[1]));
-        this.wines = winesList;
+      next: (data) => {
+        this.wines = data;
         this.isLoading = false;
       },
       error: (err) => {

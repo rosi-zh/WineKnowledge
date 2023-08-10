@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { IWine } from '../types/wine';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,20 @@ export class ApiService {
   }
 
   getAllWines() {
-    return this.http.get('/api/wines.json');
+    return this.http.get<{ [id: string]: IWine}>('/api/wines.json')
+    .pipe(map((wines) => {
+      let winesData: IWine[] = [];
+
+      for (let id in wines) {
+        winesData.push({...wines[id], id});
+      }
+
+      return winesData;
+    }));
   }
 
-  getWine() {
-    return this.http.get('/api/wines.json');
+  getSingleWine(wineId: string) {
+    return this.http.get<IWine>(`/api/wines/${wineId}.json`);
   }
 
   addWine(wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {

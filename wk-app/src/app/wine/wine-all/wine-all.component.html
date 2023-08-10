@@ -1,5 +1,4 @@
 <main id="main">
-    <!-- Portfolio Grid-->
     <section class="page-section bg-light" id="portfolio">
         <div class="container">
             <div class="text-center">
@@ -16,9 +15,8 @@
                 
                 <ng-container *ngFor="let wine of wines">
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <a class="portfolio-link" [routerLink]="wine.id">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="bi bi-plus"></i></div>
                             </div>
