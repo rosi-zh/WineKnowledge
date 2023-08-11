@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { WineModule } from './wine/wine.module';
 import { appInterceptorProvider } from './app.interceptor';
 import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { environment } from 'src/environments/environment';
     CoreModule,
     SharedModule,
     WineModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [

@@ -62,4 +62,8 @@ export class ApiService {
   deleteWine(wineId: string) {
     return this.http.delete(`/api/wines/${wineId}.json`);
   }
+
+  logMessage(name: string, email: string, phone: string, message: string) {
+    return this.http.post('/api/logs.json', {name, email, phone, message});
+  }
 }
