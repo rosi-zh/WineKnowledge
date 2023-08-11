@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { WineAllComponent } from './wine-all/wine-all.component';
 import { WineAddComponent } from './wine-add/wine-add.component';
-import { AuthGuard } from '../core/guards/auth.guard';
 import { WineDetailsComponent } from './wine-details/wine-details.component';
+import { WineEditComponent } from './wine-edit/wine-edit.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'wines/:wineId',
     component: WineDetailsComponent
+  },
+  {
+    path: 'wines/edit/:wineId',
+    component: WineEditComponent
   }
 ];
 

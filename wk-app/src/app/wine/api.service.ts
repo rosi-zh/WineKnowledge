@@ -28,13 +28,23 @@ export class ApiService {
   }
 
   getSingleWine(wineId: string) {
-    return this.http.get<IWine>(`/api/wines/${wineId}.json`);
+    return this.http.get<IWine>(`/api/wines/${wineId}.json`)
+    .pipe(map((wine) => {
+      let wineData: IWine = {...wine, id: wineId}; 
+
+      return wineData;
+    }));
   }
 
   addWine(wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {
     const ownerId = this.userId;
 
     return this.http.post('/api/wines.json', { wineName, category, imageUrl, taste, wineDetails, likes: [], ownerId });
+  }
+
+  editWine(wineId: string, wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {
+    
+    return this.http.patch<IWine>(`/api/wines/${wineId}.json`, {wineName, category, imageUrl, taste, wineDetails})
   }
 
 }

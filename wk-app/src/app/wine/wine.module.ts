@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { WineAddComponent } from './wine-add/wine-add.component';
 import { FormsModule } from '@angular/forms';
 import { WineDetailsComponent } from './wine-details/wine-details.component';
+import { WineEditComponent } from './wine-edit/wine-edit.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { WineDetailsComponent } from './wine-details/wine-details.component';
     WineAllComponent,
     WineAddComponent,
     WineDetailsComponent,
+    WineEditComponent,
   ],
   imports: [
     CommonModule,

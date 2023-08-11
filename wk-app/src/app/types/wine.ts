@@ -3,8 +3,9 @@ enum wineCategory {
     WhiteWine = "White Wine",
     Rose = "Rose"
 }
+
 export interface IWine {
-    id?: string;
+    id: string;
     wineName: string;
     category: wineCategory;
     imageUrl: string;
