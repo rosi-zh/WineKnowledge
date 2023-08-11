@@ -1,27 +1,70 @@
-# WkApp
+# WineKnowlage
+**WineKnowlage** website is developed for SoftUni as a final project for the Angular course. For its creation Angular, HTML, Bootstrap,
+CSS are used. For backend and cloud file storage - Firebase.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
+**WineKnowlage** is a site that contains information on different types of wine. The project is separated in to two roles - Guest and User.
+	
+## Account types
+- **Guest** - The **_Guest_** profile allows you to browse true the site
+- **User** - The **_User_** profile gives you access to adding wines to the wine list, editing and deleting owned wines. 
 
-## Development server
+### User profile
+- **Users** needs to Login with email and password.
+- **Users** can access their personal profile page.
+- **Users** can change their profile names.
+- **Users** can add wines to the wine list.
+- **Users** can edit owned wines.
+- **Users** can delete owned wines.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Page Navigation
 
-## Code scaffolding
+### Guest View
+***Navigation bar view from guest***
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### User View
+***Navigation bar view from user***
 
-## Build
+### Footer
+***The footer is visible on every page***
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Registration page
 
-## Running unit tests
+### _User registration form expects the following inputs:_
+- **_First name_**;
+- **_Last name_**;
+- **_Email_** address;
+- **_Password_**;
+- Repeat **_Password_**;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**_The user password needs to be minimum 8 characters long._**
 
-## Running end-to-end tests
+## User Login page
+### _User Login form expects the following inputs:_
+- **_email_** address;
+- **_password_**;
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## User profile page
 
-## Further help
+### Edit user name
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Add Wines
+The **Add** Wines page is visable only to Logged users.
+
+### _The Add Wines page expects the following input:_
+- Wine Name;
+- Category;
+- Image;
+- Taste Summary;
+- Details
+
+##  Edit Wines
+The **Edit** Wines page is visable only to owner.
+
+### The Edit Wines page contains same fields as Add Wine page.
+
+## Delete Wines 
+The **Delete Wines** is visable only to owner. And it requires conformation to delete.
+
+## Contacts Page
+The **Contact** page is visable for everyone.
+
