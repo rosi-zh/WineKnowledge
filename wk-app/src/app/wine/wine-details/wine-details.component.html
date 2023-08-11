@@ -27,7 +27,7 @@
     
                                     <div class="action-buttons my-4 text-center" *ngIf="isLoggedIn && isOwner">
                                         <button class="btn btn-dark btn-rounded edit-btn" [routerLink]="['/wines', 'edit', wine.id]">Edit Wine</button>
-                                        <button class="btn btn-dark btn-rounded" (click)="deleteWine()">Delete Wine</button>
+                                        <button class="btn btn-dark btn-rounded" (click)="openDeleteModal()">Delete Wine</button>
                                     </div>
                                 </div>
     

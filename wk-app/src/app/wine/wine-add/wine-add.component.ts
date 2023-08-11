@@ -18,7 +18,7 @@ export class WineAddComponent implements OnDestroy {
     'Rose'
   ];
   errorMessage: string = '';
-  subscription!: Subscription
+  subscription$!: Subscription
   
   uploadMessage: string = 'No file uploaded yet.';
   selectedFile: File | null = null;
@@ -46,7 +46,7 @@ export class WineAddComponent implements OnDestroy {
       const uploadTask = this.storage.upload(filePath, this.selectedFile);
       this.uploadMessage = 'Uploading image...'
 
-      uploadTask.snapshotChanges().pipe(
+      this.subscription$ = uploadTask.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe({
             next: (url) => {
@@ -73,7 +73,7 @@ export class WineAddComponent implements OnDestroy {
     wineDetails = wineDetails.trim();
     const imageUrl = this.downloadUrl;
 
-    this.subscription = this.apiService.addWine(wineName, category, imageUrl, taste, wineDetails).subscribe({
+    this.subscription$ = this.apiService.addWine(wineName, category, imageUrl, taste, wineDetails).subscribe({
       next: () => {
         this.form.reset();
         this.router.navigate(['/wines']);
@@ -85,8 +85,8 @@ export class WineAddComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
+    if(this.subscription$) {
+      this.subscription$.unsubscribe();
     }
   }
 }

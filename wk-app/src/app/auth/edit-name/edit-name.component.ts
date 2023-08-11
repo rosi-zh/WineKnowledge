@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class EditNameComponent implements OnInit {
   @ViewChild('editNameForm') form!: NgForm;
+  
   fullName = {
     firstName: '',
     lastName: ''

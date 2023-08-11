@@ -47,4 +47,8 @@ export class ApiService {
     return this.http.patch<IWine>(`/api/wines/${wineId}.json`, {wineName, category, imageUrl, taste, wineDetails})
   }
 
+  deleteWine(wineId: string) {
+
+    return this.http.delete(`/api/wines/${wineId}.json`);
+  }
 }

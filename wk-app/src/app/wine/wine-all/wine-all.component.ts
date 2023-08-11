@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class WineAllComponent implements OnInit, OnDestroy {
   wines: IWine[] = [];
   isLoading: boolean = true;
-  subscription!: Subscription;
+  subscription$!: Subscription;
   errorMessage?: string;
 
   constructor(private apiService: ApiService, private authService: AuthService) {}
@@ -22,7 +22,7 @@ export class WineAllComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription = this.apiService.getAllWines().subscribe({
+    this.subscription$ = this.apiService.getAllWines().subscribe({
       next: (data) => {
         this.wines = data;
         this.isLoading = false;
@@ -35,8 +35,8 @@ export class WineAllComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
+    if(this.subscription$) {
+      this.subscription$.unsubscribe();
     }
   }
 

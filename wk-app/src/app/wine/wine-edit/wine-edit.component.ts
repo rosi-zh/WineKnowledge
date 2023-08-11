@@ -17,7 +17,7 @@ export class WineEditComponent implements OnInit {
     'White Wine',
     'Rose'
   ];
-  
+
   errorMessage: string = '';
   subscription$!: Subscription
   
@@ -95,7 +95,7 @@ export class WineEditComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    console.log('Edited')
+
     let { wineName, category, taste, wineDetails } = this.form.value;
     wineName = wineName.trim();
     taste = taste.trim();

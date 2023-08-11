@@ -8,6 +8,7 @@ import { WineAddComponent } from './wine-add/wine-add.component';
 import { FormsModule } from '@angular/forms';
 import { WineDetailsComponent } from './wine-details/wine-details.component';
 import { WineEditComponent } from './wine-edit/wine-edit.component';
+import { WineDeleteComponent } from './wine-delete/wine-delete.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { WineEditComponent } from './wine-edit/wine-edit.component';
     WineAddComponent,
     WineDetailsComponent,
     WineEditComponent,
+    WineDeleteComponent,
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,8 @@ import { IWine } from 'src/app/types/wine';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WineDeleteComponent } from '../wine-delete/wine-delete.component';
 
 @Component({
   selector: 'app-wine-details',
@@ -14,10 +16,16 @@ export class WineDetailsComponent implements OnInit, OnDestroy{
   wine!: IWine;
   isLoading: boolean = true;
   isOwner!: boolean;
-  subscription!: Subscription;
+  subscription$!: Subscription;
   errorMessage?: string;
 
-  constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute, private authService: AuthService) {}
+
+  constructor(
+    private apiService: ApiService, 
+    private activatedRoute: ActivatedRoute, 
+    private authService: AuthService,
+    private modalService: NgbModal
+    ) {}
 
   get isLoggedIn() {
     return this.authService.isLoggedIn;
@@ -30,7 +38,7 @@ export class WineDetailsComponent implements OnInit, OnDestroy{
   getWine():void {
     const wineId = this.activatedRoute.snapshot.params['wineId'];
 
-    this.subscription = this.apiService.getSingleWine(wineId).subscribe({
+    this.subscription$ = this.apiService.getSingleWine(wineId).subscribe({
       next: (data) => {
         this.wine = data;
         this.isOwner = this.authService.userId === data.ownerId;
@@ -43,13 +51,16 @@ export class WineDetailsComponent implements OnInit, OnDestroy{
     });
   }
 
-  deleteWine(): void {
-    console.log('Deleted');
+  openDeleteModal(): void {
+    const modalRef = this.modalService.open(WineDeleteComponent);
+
+    modalRef.componentInstance.wineId = this.wine.id;
+    modalRef.componentInstance.wineImage = this.wine.imageUrl.split('images%2F')[1].split('?')[0];;
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
+    if(this.subscription$) {
+      this.subscription$.unsubscribe();
     }
   }
 
