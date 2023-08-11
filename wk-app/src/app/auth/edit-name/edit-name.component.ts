@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,19 +10,17 @@ import { AuthService } from '../auth.service';
 })
 export class EditNameComponent implements OnInit {
   @ViewChild('editNameForm') form!: NgForm;
+  @Input() displayName!: String;
   
   fullName = {
     firstName: '',
     lastName: ''
   }
 
-  constructor(private authService: AuthService, private modalService: NgbModal, public activeModal: NgbActiveModal) {}
+  constructor(private authService: AuthService, public activeModal: NgbActiveModal) {}
   
   ngOnInit(): void {
-    const fullName = this.authService.user!.displayName;
-    const names = fullName.split(' ');
-    const firstName = names[0];
-    const lastName = names[1];
+    const [ firstName, lastName ] = this.displayName.split(' ');
 
     this.fullName = {
       firstName,
@@ -39,6 +37,9 @@ export class EditNameComponent implements OnInit {
     const displayName = `${firstName.trim()} ${lastName.trim()}`;
 
     this.authService.editName(displayName).subscribe({
+      next: () => {
+        this.activeModal.close(displayName);
+      },
       error: (err) => console.log(err),
     });
 

@@ -36,5 +36,14 @@ export class ProfileComponent implements OnInit {
 
   openModal(): void {
     const modalRef = this.modelService.open(EditNameComponent);
+    modalRef.componentInstance.displayName = this.profileDetails!.displayName;
+
+    modalRef.result.then((result) => {
+      if(result) {
+        this.profileDetails!.displayName = result;
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
   }
 }

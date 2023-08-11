@@ -8,7 +8,7 @@
     <div class="form-group mt-4">
       <label class="form-label" for="firstName">First name</label>
       <input type="text" id="firstName" name="firstName" class="form-control" ngModel #firstNameInput="ngModel" required
-        minlength="2" [(ngModel)]="fullName.firstName" />
+        minlength="2" [ngModel]="fullName.firstName" />
     </div>
     <ng-container *ngIf="firstNameInput.touched">
       <div class="invalid-feedback" *ngIf="firstNameInput.errors?.['required']">*First name is required.</div>
@@ -20,7 +20,7 @@
     <div class="form-group mt-4">
       <label class="form-label" for="lastName">Last Name</label>
       <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastNameInput="ngModel" required
-        minlength="2" [(ngModel)]="fullName.lastName" />
+        minlength="2" [ngModel]="fullName.lastName" />
     </div>
     <ng-container *ngIf="lastNameInput.touched">
       <div class="invalid-feedback" *ngIf="lastNameInput.errors?.['required']">*Last name is required.</div>
@@ -29,6 +29,6 @@
     </ng-container>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark" (click)="activeModal.close('Save click')">Save</button>
+    <button type="submit" class="btn btn-outline-dark">Save</button>
   </div>
 </form>
