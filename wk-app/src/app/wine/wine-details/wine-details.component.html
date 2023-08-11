@@ -5,6 +5,11 @@
             <div class="col-12 text-center" *ngIf="isLoading">
                 <app-loader />
             </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+
             <ng-container *ngIf="!isLoading">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">{{wine.wineName}}</h2>
@@ -20,9 +25,9 @@
                                         <img src="{{wine.imageUrl}}" alt="Wine Picture">
                                     </div>
     
-                                    <div class="action-buttons my-4 text-center" *ngIf="isLoggedIn">
-                                        <button class="btn btn-dark btn-rounded edit-btn">Edit Wine</button>
-                                        <button class="btn btn-dark btn-rounded">Delete Wine</button>
+                                    <div class="action-buttons my-4 text-center" *ngIf="isLoggedIn && isOwner">
+                                        <button class="btn btn-dark btn-rounded edit-btn" [routerLink]="['/wines', 'edit', wine.id]">Edit Wine</button>
+                                        <button class="btn btn-dark btn-rounded" (click)="deleteWine()">Delete Wine</button>
                                     </div>
                                 </div>
     

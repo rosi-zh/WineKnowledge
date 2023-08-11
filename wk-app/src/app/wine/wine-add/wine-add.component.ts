@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { finalize } from 'rxjs';
+import { Subscription, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './wine-add.component.html',
   styleUrls: ['./wine-add.component.css']
 })
-export class WineAddComponent {
+export class WineAddComponent implements OnDestroy {
   @ViewChild('addWineForm') form!: NgForm;
   categories: string[] = [
     'Red Wine',
@@ -18,6 +18,7 @@ export class WineAddComponent {
     'Rose'
   ];
   errorMessage: string = '';
+  subscription!: Subscription
   
   uploadMessage: string = 'No file uploaded yet.';
   selectedFile: File | null = null;
@@ -72,15 +73,20 @@ export class WineAddComponent {
     wineDetails = wineDetails.trim();
     const imageUrl = this.downloadUrl;
 
-    this.apiService.addWine(wineName, category, imageUrl, taste, wineDetails).subscribe({
+    this.subscription = this.apiService.addWine(wineName, category, imageUrl, taste, wineDetails).subscribe({
       next: () => {
         this.form.reset();
         this.router.navigate(['/wines']);
       },
       error: (err) => {
-        const message = err.error.error.message;
+        const errorMessage = err.error.error.message;
       }
     });
   }
 
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

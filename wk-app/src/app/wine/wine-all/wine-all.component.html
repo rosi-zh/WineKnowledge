@@ -4,6 +4,11 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Wines</h2>
                 <h3 class="section-subheading text-muted">Start with learning the basics.</h3>
+
+                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                    {{errorMessage}}
+                </div>
+
                 <ng-container *ngIf="isLoggedIn">
                     <a class="btn btn-danger btn-lg mb-3" routerLink="/wines/add">Add Wine</a>
                 </ng-container>
@@ -30,6 +35,9 @@
                 </div>
                 </ng-container>
                 
+                <div class="col-12 text-center" *ngIf="wines.length <= 0">
+                    <h3 class="pt-3">There are no wines to show!</h3>
+                </div>
             </div>
         </div>
     </section>

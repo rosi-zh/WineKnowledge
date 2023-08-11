@@ -10,7 +10,7 @@ import { map } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  get owner(): string | undefined {
+  get userId(): string | undefined {
     return this.authService.userId;
   }
 
@@ -32,8 +32,9 @@ export class ApiService {
   }
 
   addWine(wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {
-    const ownerId = this.owner;
+    const ownerId = this.userId;
 
     return this.http.post('/api/wines.json', { wineName, category, imageUrl, taste, wineDetails, likes: [], ownerId });
   }
+
 }
