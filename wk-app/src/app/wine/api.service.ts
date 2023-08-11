@@ -36,19 +36,30 @@ export class ApiService {
     }));
   }
 
+  getByOwnerId(userId: string | undefined) {
+    return this.http.get<IWine[]>(`/api/wines.json?orderBy="ownerId"&equalTo="${userId}"`)
+    .pipe(map((wines) => {
+      let winesData: IWine[] = [];
+
+      for (let id in wines) {
+        winesData.push({...wines[id], id});
+      }
+
+      return winesData;
+    }));
+  } 
+
   addWine(wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {
     const ownerId = this.userId;
 
     return this.http.post('/api/wines.json', { wineName, category, imageUrl, taste, wineDetails, likes: [], ownerId });
   }
 
-  editWine(wineId: string, wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) {
-    
+  editWine(wineId: string, wineName: string, category: string, imageUrl: string, taste: string, wineDetails: string) { 
     return this.http.patch<IWine>(`/api/wines/${wineId}.json`, {wineName, category, imageUrl, taste, wineDetails})
   }
 
   deleteWine(wineId: string) {
-
     return this.http.delete(`/api/wines/${wineId}.json`);
   }
 }

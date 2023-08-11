@@ -12,15 +12,15 @@
                             </button>
                         </div>
                         <div class="ms-3 right-div">
-                            <h5>{{profileDetails?.displayName}}</h5>
-                            <p>{{profileDetails?.email}}</p>
+                            <h5>{{profileDetails.displayName}}</h5>
+                            <p>{{profileDetails.email}}</p>
                         </div>
                     </div>
                     <div class="p-4 text-black bg-light">
                         <div class="d-flex justify-content-end text-center py-1">
                             <div>
                                 <p class="mb-1 h5">Last Login</p>
-                                <p class="small text-muted mb-0 login-date">{{profileDetails?.lastLoginAt | date:'medium'}}</p>
+                                <p class="small text-muted mb-0 login-date">{{profileDetails.lastLoginAt | date:'medium'}}</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <a routerLink="" class="btn btn-danger mb-3">Go To My Wines</a>
+                                        <a [routerLink]="['/wines', 'my', profileDetails.localId]" class="btn btn-danger mb-3">Go To My Wines</a>
                                         <img src="/assets/img/wine-lights.jpg" class="card-img-bottom" alt="wine lights">
                                     </div>
                                 </div>

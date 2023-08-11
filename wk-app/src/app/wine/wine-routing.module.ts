@@ -6,6 +6,7 @@ import { WineAddComponent } from './wine-add/wine-add.component';
 import { WineDetailsComponent } from './wine-details/wine-details.component';
 import { WineEditComponent } from './wine-edit/wine-edit.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { WineByOwnerComponent } from './wine-by-owner/wine-by-owner.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'wines/edit/:wineId',
     component: WineEditComponent
+  },
+  {
+    path: 'wines/my/:userId',
+    component: WineByOwnerComponent
   }
 ];
 

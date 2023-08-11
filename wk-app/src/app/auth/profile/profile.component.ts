@@ -4,6 +4,7 @@ import { IProfile } from 'src/app/types/profile';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditNameComponent } from '../edit-name/edit-name.component';
+import { ApiService } from 'src/app/wine/api.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,14 +12,14 @@ import { EditNameComponent } from '../edit-name/edit-name.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profileDetails: IProfile | undefined = {
+  profileDetails: IProfile = {
     localId: '',
     email: '',
     displayName: '',
     lastLoginAt: ''
   };
 
-  constructor(private authService: AuthService, private router: Router, private modelService: NgbModal) {}
+  constructor(private authService: AuthService, private router: Router, private modelService: NgbModal, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.authService.getProfile().subscribe(
@@ -44,6 +45,12 @@ export class ProfileComponent implements OnInit {
       }
     }).catch((error) => {
       console.log(error);
+    })
+  }
+
+  showMyWines(owenrId: string): void {
+    this.apiService.getByOwnerId(owenrId).subscribe((d) => {
+      console.log(d);
     })
   }
 }
