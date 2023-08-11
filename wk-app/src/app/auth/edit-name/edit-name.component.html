@@ -29,6 +29,7 @@
     </ng-container>
   </div>
   <div class="modal-footer">
+    <button class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel click')">Cancel</button>
     <button type="submit" class="btn btn-outline-dark" [disabled]="editNameForm.invalid">Save</button>
   </div>
 </form>
