@@ -3,7 +3,10 @@
 CSS are used. For backend and cloud file storage - Firebase.
 
 **WineKnowlage** is a site that contains information on different types of wine. The project is separated in to two roles - Guest and User.
-	
+
+# Deployment
+**WineKnowlage** website is deployed on: https://wine-knowledge.web.app/
+
 ## Account types
 - **Guest** - The **_Guest_** profile allows you to browse true the site
 - **User** - The **_User_** profile gives you access to adding wines to the wine list, editing and deleting owned wines. 
