@@ -24,10 +24,12 @@ const routes: Routes = [
   },
   {
     path: 'wines/edit/:wineId',
+    canActivate: [AuthGuard],
     component: WineEditComponent
   },
   {
     path: 'wines/my/:userId',
+    canActivate: [AuthGuard],
     component: WineByOwnerComponent
   }
 ];
